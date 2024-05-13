@@ -2,6 +2,9 @@ import pygame
 import random
 import time
 from game_icon1 import Gameicon1
+from game_icon2 import Gameicon2
+from game_icon3 import Gameicon3
+from game_icon4 import Gameicon4
 from surviver1 import Surviver1
 
 # set up pygame modules
@@ -16,7 +19,12 @@ SCREEN_WIDTH = 654
 size=(SCREEN_WIDTH, SCREEN_HEIGHT)
 screen=pygame.display.set_mode(size)
 start_game=False
-bg = pygame.image.load("gameicon_tornado.png")
+start=False
+g1=Gameicon1(100,50)
+g2=Gameicon2(105,230)
+g3=Gameicon3(380,50)
+g4=Gameicon4(380,230)
+
 b2= pygame.image.load("gameicon_tsunami.png")
 start_disaster_surivial= my_font.render("Welcome to Natural Disaster Survival!", True, (200, 100, 0))
 to_start= my_font.render("To start, prsss the first mouse button", True, (200, 100, 0))
@@ -34,11 +42,14 @@ while run:
 
 
     mouse_click = pygame.mouse.get_pressed()
-    if start_game==False:
-        screen.blit(start_disaster_surivial,(100,100))
-    if mouse_click[0]:
-        start_game==True
-        screen.blit()
+    if start==False:
+        screen.blit(start_disaster_surivial,(1000,1000))
+    if mouse_click[0] :
+        start=True
+        screen.blit(g1.image, g1.rect)
+        screen.blit(g2.image, g2.rect)
+        screen.blit(g3.image, g3.rect)
+        screen.blit(g4.image, g4.rect)
     pygame.display.update()
 
 # Once we have exited the main program loop we can stop the game engine:
