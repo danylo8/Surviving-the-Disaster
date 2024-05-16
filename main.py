@@ -36,15 +36,21 @@ while run:
     for event in pygame.event.get():  # User did something
         if event.type == pygame.MOUSEBUTTONUP:
             start_game = True
-
+            start=True
         if event.type == pygame.QUIT:  # If user clicked close
             run = False
 
+    point = pygame.mouse.get_pos()
+    collide1 = g1.collidepoint(point)
+    collide2= g2.collidepoint(point)
+    collide3= g3.collidepoint(point)
+    collide4= g4.collidepoint(point)
+
 
     mouse_click = pygame.mouse.get_pressed()
-    if start==False:
-        screen.blit(start_disaster_surivial,(1000,1000))
-    if mouse_click[0] :
+    if start==False and mouse_click[0]==False:
+        screen.blit(start_disaster_surivial)
+    if mouse_click[0] and collide1==False and collide2==False and collide3==False and collide4==False:
         start=True
         screen.blit(g1.image, g1.rect)
         screen.blit(g2.image, g2.rect)
