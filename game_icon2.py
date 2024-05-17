@@ -16,3 +16,4 @@ class Gameicon2:
        self.x=new_x
        self.y=new_y
        self.rect=pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
+
