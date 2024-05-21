@@ -24,9 +24,12 @@ g1=Gameicon1(100,50)
 g2=Gameicon2(105,230)
 g3=Gameicon3(380,50)
 g4=Gameicon4(380,230)
+keys = pygame.key.get_pressed()
+mouse_click = pygame.mouse.get_pressed()
 visible=True
 
 b2= pygame.image.load("gameicon_tsunami.png")
+g1_bg = pygame.image.load("tsunami_g1_background.jpg")
 start_disaster_survival= my_font.render("Welcome to Natural Disaster Survival!", True, (200, 100, 0))
 to_start= my_font.render("To start, press the first mouse button", True, (200, 100, 0))
 start_game=False
@@ -41,15 +44,25 @@ while run:
         if event.type == pygame.QUIT:  # If user clicked close
             run = False
     (x,y)=pygame.mouse.get_pos()
-    if g1.rect.colliderect((x,y).rect):
+    if g1.rect.collidepoint(x, y) and mouse_click[0]:
+        visible=False
+        screen.blit(g1_bg, (0, 0))
+    if g2.rect.collidepoint(x, y):
+        visible=False
+    if g3.rect.collidepoint(x, y):
+        visible=False
+    if g4.rect.collidepoint(x, y):
         visible=False
 
 
 
-    mouse_click = pygame.mouse.get_pressed()
-    if start==False and mouse_click[0]==False:
+    if start==False :
         screen.blit(start_disaster_survival,(0,0))
-    if mouse_click[0] and visible==True:
+        visible=True
+
+    keys = pygame.key.get_pressed()
+    mouse_click = pygame.mouse.get_pressed()
+    if visible==True and mouse_click[0] and start==False:
         start=True
         screen.blit(g1.image, g1.rect)
         screen.blit(g2.image, g2.rect)
