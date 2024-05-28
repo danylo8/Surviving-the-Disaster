@@ -24,18 +24,36 @@ g1=Gameicon1(100,50)
 g2=Gameicon2(105,230)
 g3=Gameicon3(380,50)
 g4=Gameicon4(380,230)
+
 keys = pygame.key.get_pressed()
 mouse_click = pygame.mouse.get_pressed()
 visible=True
-
+b1=pygame.image.load("gameicon_volcano.jpg")
 b2= pygame.image.load("gameicon_tsunami.png")
+b3= pygame.image.load("gameicon_meteor.png")
+b4= pygame.image.load("gameicon_tornado.png.")
+
 g1_bg = pygame.image.load("tsunami_g1_background.jpg")
+g2_bg= pygame.image.load("meteor game background.jpg")
+g4_bg= pygame.image.load("volcano game background.jpg")
+
 start_disaster_survival= my_font.render("Welcome to Natural Disaster Survival!", True, (200, 100, 0))
 to_start= my_font.render("To start, press the first mouse button", True, (200, 100, 0))
 start_game=False
 run=True
 
 while run:
+
+    if start_game==True:
+        keys=pygame.key.get_pressed()
+        if keys[pygame.K_d]:
+            s1.move_direction("right")
+        if keys[pygame.K_a]:
+            s1.move_direction("left")
+        if keys[pygame.K_w]:
+            s1.move_direction("up")
+        if keys[pygame.K_s]:
+            s1.move_direction("down")
 
     for event in pygame.event.get():  # User did something
         if event.type == pygame.MOUSEBUTTONUP:
@@ -44,19 +62,22 @@ while run:
         if event.type == pygame.QUIT:  # If user clicked close
             run = False
     (x,y)=pygame.mouse.get_pos()
-    if g1.rect.collidepoint(x, y) and mouse_click[0]:
+    if visible==True and g1.rect.collidepoint(x, y) and mouse_click[0]:
         visible=False
+        s1 = Surviver1(0,0)
         screen.blit(g1_bg, (0, 0))
-    if g2.rect.collidepoint(x, y):
+
+
+    if visible==True and g2.rect.collidepoint(x, y) and mouse_click[0]:
         visible=False
-    if g3.rect.collidepoint(x, y):
+    if visible==True and g3.rect.collidepoint(x, y) and mouse_click[0]:
         visible=False
-    if g4.rect.collidepoint(x, y):
+    if visible==True and g4.rect.collidepoint(x, y) and mouse_click[0]:
         visible=False
 
 
 
-    if start==False :
+    if start==False:
         screen.blit(start_disaster_survival,(0,0))
         visible=True
 
