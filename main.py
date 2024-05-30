@@ -34,7 +34,8 @@ b1= pygame.image.load("gameicon_tsunami.png")
 b3= pygame.image.load("gameicon_meteor.png")
 b4= pygame.image.load("gameicon_tornado.png.")
 
-g1_bg = pygame.image.load("tsunami_g1_background.jpg")
+g1_bg = pygame.image.load("tsunami_g1_background.jpg").convert()
+SCREEN_WIDTH,SCREEN_HEIGHT=g1_bg.get_rect().size
 g3_bg= pygame.image.load("meteor game background.jpg")
 g2_bg= pygame.image.load("volcano game background.jpg")
 
@@ -42,19 +43,18 @@ start_disaster_survival= my_font.render("Welcome to Natural Disaster Survival!",
 to_start= my_font.render("To start, press the first mouse button", True, (200, 100, 0))
 start_game=False
 run=True
-
+frame = 0
 while run:
 
-    if start_game==True:
-        keys=pygame.key.get_pressed()
-        if keys[pygame.K_d]:
-            s1.move_direction("right")
-        if keys[pygame.K_a]:
-            s1.move_direction("left")
-        if keys[pygame.K_w]:
-            s1.move_direction("up")
-        if keys[pygame.K_s]:
-            s1.move_direction("down")
+    keys=pygame.key.get_pressed()
+    if keys[pygame.K_d]:
+        s1.move_direction("right")
+    if keys[pygame.K_a]:
+        s1.move_direction("left")
+    if keys[pygame.K_w]:
+        s1.move_direction("up")
+    if keys[pygame.K_s]:
+        s1.move_direction("down")
 
     (x,y)=pygame.mouse.get_pos()
     if visible==True and g2.rect.collidepoint(x, y) and mouse_click[0]:
@@ -85,7 +85,7 @@ while run:
     if visible == True and g1.rect.collidepoint(x, y) and mouse_click[0] and start==True and start_game==True:
         visible = False
         screen.blit(g1_bg, (0, 0))
-        screen.blit(s1.image, s1.rect)
+
     if visible == True and g2.rect.collidepoint(x, y) and mouse_click[0] and start==True and start_game==True:
         visible = False
 
@@ -105,7 +105,10 @@ while run:
         screen.blit(g2.image, g2.rect)
         screen.blit(g3.image, g3.rect)
         screen.blit(g4.image, g4.rect)
+    if visible==False:
+        screen.blit(s1.image, s1.rect)
     pygame.display.update()
+    frame += 1
 
 # Once we have exited the main program loop we can stop the game engine:
 pygame.quit()

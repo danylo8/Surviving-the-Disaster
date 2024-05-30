@@ -80,7 +80,7 @@ while run:
         if event.type == pygame.QUIT:  # If user clicked close
              run = False
 
-    screen.blit(bg, (0, 0))
+        screen.blit(bg, (0, 0))
 
 
     if endgame==False and start_game==True:
