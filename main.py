@@ -34,8 +34,8 @@ b1= pygame.image.load("gameicon_tsunami.png")
 b3= pygame.image.load("gameicon_meteor.png")
 b4= pygame.image.load("gameicon_tornado.png.")
 
-g1_bg = pygame.image.load("tsunami_g1_background.jpg").convert()
-SCREEN_WIDTH,SCREEN_HEIGHT=g1_bg.get_rect().size
+g1_bg = pygame.image.load("tsunami_g1_background.jpg")
+
 g3_bg= pygame.image.load("meteor game background.jpg")
 g2_bg= pygame.image.load("volcano game background.jpg")
 
@@ -45,7 +45,20 @@ start_game=False
 run=True
 frame = 0
 while run:
+    scroll_x = 0
+    scroll_y = 0
+    background_x = 0
+    scroll_x -= 1
+    background_x -= 1
 
+
+
+    # Reset the background position when it goes off screen
+    if scroll_x <= -SCREEN_WIDTH:
+        scroll_x = SCREEN_WIDTH
+
+    if background_x <= -SCREEN_WIDTH:
+        background_x = SCREEN_WIDTH
     keys=pygame.key.get_pressed()
     if keys[pygame.K_d]:
         s1.move_direction("right")
@@ -84,7 +97,9 @@ while run:
     mouse_click = pygame.mouse.get_pressed()
     if visible == True and g1.rect.collidepoint(x, y) and mouse_click[0] and start==True and start_game==True:
         visible = False
-        screen.blit(g1_bg, (0, 0))
+
+        screen.blit(g1_bg, (scroll_x, scroll_y))
+        screen.blit(g1_bg, (background_x, scroll_y))
 
     if visible == True and g2.rect.collidepoint(x, y) and mouse_click[0] and start==True and start_game==True:
         visible = False
