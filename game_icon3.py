@@ -9,9 +9,10 @@ class Gameicon3:
        self.image_size=self.image.get_size()
        self.rect=pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
        self.image_size=self.image.get_size()
-       scale_size=(self.image_size[0] * .1, self.image_size[1] * .1)
+       scale_size=(self.image_size[0] * .2, self.image_size[1] * .2)
        self.image=pygame.transform.scale(self.image, scale_size)
        self.image_size=self.image.get_size()
+
    def set_location(self, new_x, new_y):
        self.x=new_x
        self.y=new_y

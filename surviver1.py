@@ -7,11 +7,11 @@ class Surviver1:
       self.y=y
       self.image=pygame.image.load("surviver1.png")
       self.image_size=self.image.get_size()
-      scale_size = (self.image_size[0] * .25, self.image_size[1] * .25)
+      scale_size = (self.image_size[0] * .4, self.image_size[1] * .4)
       self.image = pygame.transform.scale(self.image, scale_size)
       self.image_size = self.image.get_size()
       self.rect=pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
-      self.delta=.1
+      self.delta=0.3
 
   def move_direction(self, direction):
       if direction == "right":
